@@ -1,0 +1,72 @@
+<!-- 
+  Name: Anson Lu
+  Email: Anson_Lu@student.uml.edu
+ -->
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Scrabble Game</title>
+		<meta charset="utf-8" />
+
+		<!-- link CSS file -->
+		<link rel="stylesheet" type="text/css" href="css/HW5.css" />
+
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
+		<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+		<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+		<!-- link JS file -->
+		<script src="js/HW5.js"></script>
+	</head>
+
+	<body>
+		<main>
+			<!-- article used to contain all content -->
+			<article>
+				<!-- title at top of page -->
+				<h1>Scrabble Game</h1>
+				<!-- small description below title -->
+				<h2>Implementing a Bit of Scrabble with Drag-and-Drop</h2>
+
+				<!-- Score board: tracks player's score -->
+				<div id="score_Board">
+					<div>
+						<!-- display the current word -->
+						<div class="label">Word:</div>
+						<div id="word"></div>
+					</div>
+					<div>
+						<!-- display the score for this round -->
+						<div class="label">Score:</div>
+						<div id="score">0</div>
+					</div>
+					<div>
+						<!-- display the number of remaining tiles -->
+						<div class="label">Remaining Tiles:</div>
+						<div id="remaining_Tiles"></div>
+					</div>
+					<div>
+						<!-- highest score fo all the rounds -->
+						<div class="label">Highest Score:</div>
+						<div id="highest_Score">&minus;</div>
+					</div>
+				</div>
+
+				<!-- the scrabble board. Board laid out by JavaScript file. -->
+				<div id="board"></div>
+
+				<!-- Buttons -->
+				<div class="button_Box">
+					<!-- button to submit word -->
+					<button id="next_Word_Button" onclick="next_Word()">Enter Word</button>
+					<!-- button to restart/enter a new round -->
+					<button id="restart_Button" onclick="restart()">New Round</button>
+				</div>
+
+				<!-- Rack containing the 7 tiles. The tiles will be placed by script. -->
+				<div id="letter_Rack"></div>
+			</article>
+		</main>
+	</body>
+</html>
