@@ -444,11 +444,6 @@ function next_Word() {
 	// clear current word display
 	$("#word").html("");
 
-	// clear the check marks next to the instruction texts as nothing has been played yet.
-	check_Single_Word(false);
-	check_Two_Letters_Or_More(false);
-	check_Dictionary(false);
-
 	// if no more tiles in "Remaining Tiles"
 	if (num_Tiles_In_Deck() == 0) {
 		toggle_Finish_Button(true);
@@ -494,9 +489,9 @@ function is_Dictionary_Word(word) {
 	}
 	return false;
 }
-// The dictionary lookup object
+// dictionary lookup object
 is_Dictionary_Word.dict = {};
-// Do an ajax request for the dictionary file.
+// ajax request for the dictionary file
 $.ajax({
 	url: "images/dictionary.txt",
 	success: function (result) {
@@ -546,32 +541,22 @@ function validate_Word() {
 
 	// Check if we have anything on the board.
 	if (word == "") {
-		check_Single_Word(false);
 		++error_Count;
 	} else {
 		// Check if there is a gap within letters. Gap is not allowed.
 		var rgxDisconnectedWord = new RegExp("[A-Z_]\xB7+[A-Z_]");
 		if (rgxDisconnectedWord.test(word)) {
-			check_Single_Word(false);
 			++error_Count;
-		} else {
-			check_Single_Word(true);
 		}
 	}
 
 	// Check if the word has at least 2 letters. Words with one letter may show up in an English dictionary but are not allowed in Scrabble.
-	if (word.length >= 2) {
-		check_Two_Letters_Or_More(true);
-	} else {
-		check_Two_Letters_Or_More(false);
+	if (word.length < 2) {
 		++error_Count;
 	}
 
 	// Check if the word shows up in our dictionary.
-	if (is_Dictionary_Word(word)) {
-		check_Dictionary(true);
-	} else {
-		check_Dictionary(false);
+	if (!(is_Dictionary_Word(word))) {
 		++error_Count;
 	}
 
@@ -584,31 +569,6 @@ function validate_Word() {
 	$("#word").css("color", TEXT_COLOR_ACTIVE);
 	document.getElementById("next_Word_Button").disabled = false;
 	return word;
-}
-
-// Following three functions toggle the check (v) icon next to each instruction message on or off.
-function check_Two_Letters_Or_More(check) {
-	if (check) {
-		grayscale_And_Fade($("#minLengthIcon"), false);
-	} else {
-		grayscale_And_Fade($("#minLengthIcon"), true);
-	}
-}
-
-function check_Single_Word(check) {
-	if (check) {
-		grayscale_And_Fade($("#oneWordCheckIcon"), false);
-	} else {
-		grayscale_And_Fade($("#oneWordCheckIcon"), true);
-	}
-}
-
-function check_Dictionary(check) {
-	if (check) {
-		grayscale_And_Fade($("#dictionaryCheckIcon"), false);
-	} else {
-		grayscale_And_Fade($("#dictionaryCheckIcon"), true);
-	}
 }
 
 // make jQuery object grayscale and semi-transparent

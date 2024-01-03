@@ -1,6 +1,6 @@
-Website: https://anlu13.github.io/COMP.4610---HW5/
+Demo: https://anlu13.github.io/Scrabble-Game/
 
-Repo: https://github.com/anlu13/COMP.4610---HW5
+Repo: https://github.com/anlu13/Scrabble-Game
 
 
 Write-up:
